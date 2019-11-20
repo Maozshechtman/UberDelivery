@@ -6,13 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".UI.MainActivity.MainActivity">
 
-    <TextView
+    <Spinner
+        android:id="@+id/packageTypeSpinner2"
+        android:layout_width="283dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/isFragileCheckBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/packageWeightSpinner"
+        android:layout_width="283dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/packageLocationTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isFragileCheckBox" />
+
+    <CheckBox
+        android:id="@+id/isFragileCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginLeft="154dp"
+        android:layout_marginRight="157dp"
+        android:layout_marginStart="154dp"
+        android:layout_marginTop="16dp"
+        android:text="Fragile"
+        app:layout_constraintBottom_toTopOf="@+id/packageWeightSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/packageTypeSpinner2" />
+
+    <TextView
+        android:id="@+id/packageLocationTextView"
+        android:layout_width="211dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginRight="101dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="31dp"
+        android:text="Location"
+        app:layout_constraintBottom_toTopOf="@+id/targetNameAddressSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/packageWeightSpinner" />
+
+    <Spinner
+        android:id="@+id/targetNameAddressSpinner"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginRight="52dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/phonePlainText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/packageLocationTextView" />
+
+    <EditText
+        android:id="@+id/phonePlainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="37dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginRight="99dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="TargetPhoneNumber"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/targetNameAddressSpinner" />
 
 </android.support.constraint.ConstraintLayout>
