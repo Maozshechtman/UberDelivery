@@ -19,7 +19,8 @@
         app:layout_constraintBottom_toTopOf="@+id/isFragileCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Spinner
         android:id="@+id/packageWeightSpinner"
@@ -81,6 +82,7 @@
         android:layout_marginTop="11dp"
         app:layout_constraintBottom_toTopOf="@+id/phonePlainText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/packageLocationTextView" />
 
@@ -88,18 +90,58 @@
         android:id="@+id/phonePlainText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="37dp"
+        android:layout_marginBottom="64dp"
         android:layout_marginEnd="99dp"
         android:layout_marginLeft="72dp"
         android:layout_marginRight="99dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="TargetPhoneNumber"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/AddParcelTextview"
+        android:layout_width="91dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Add Parcel"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/packageTypeSpinner2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/targetNameAddressSpinner" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:shadowColor="@android:color/background_dark"
+        tools:shadowDy="@sample/tools:cities"
+        tools:textColor="@color/colorAccent"
+        tools:textSize="18sp" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Save"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phonePlainText"
+        tools:textColor="?android:attr/navigationBarColor"
+        tools:textColorLink="@android:color/holo_blue_bright" />
 
 </android.support.constraint.ConstraintLayout>
