@@ -2,10 +2,12 @@ package com.ddb.uberdelivery.UI.MainActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import com.ddb.uberdelivery.Entities.Parcel;
 import com.ddb.uberdelivery.Entities.Member;
@@ -13,15 +15,16 @@ import com.ddb.uberdelivery.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.google.firebase.database.DatabaseReference; import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends Activity {
        private Button button;
        private  TextView textView;
     List<com.ddb.uberdelivery.Entities.Parcel> parcelList=new ArrayList<>();
     List<Member> members= new ArrayList<>();
     //region deleteAfter
-    String [] warehouseAddresses={"Htichon 11 Hifa","Moshe Solomon 3 Jerusalem","Hgamal 24 Beersheva"};
+
     private void  fakeDetailes(){
+        String [] warehouseAddresses={"Htichon 11 Hifa","Moshe Solomon 3 Jerusalem","Hgamal 24 Beersheva"};
         members.add(new Member("051111113","Yair","git hub 3 Jerusalem"));
         members.add(new Member("0525525223","Tal","kuzar 30 Jerusalem"));
         members.add(new Member("0525525623","Tomer","None 13 Ariel"));
@@ -69,6 +72,10 @@ public class MainActivity extends Activity {
 
             }
         });
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
 
 
 
