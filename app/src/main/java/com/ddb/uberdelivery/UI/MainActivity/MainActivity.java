@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,8 +19,32 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.firebase.database.DatabaseReference; import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends Activity {
+    public enum parcelweight{
+
+        UP_TO_FIVE_HUNDRED_GRAMS(0.5),
+        UP_TO_ONE_KILOGRAM(1.0),
+        UP_TO_FIVE_KILOGRAMS(5.0),
+        UP_TO_TWENTY_KILOGRAMS(20.0);
+        double value;
+
+        @Override
+        public String toString() {
+            return value==0.5?"Up to 500 grams":value==1.0?"Up to 1 kilogram":value==5.0?"Up to 5 kilograms":"Up to 20 kilograms";
+        }
+
+        parcelweight(double value) {
+            this.value=value;
+        }
+    }
+
+
+    //region View Components
        private Button button;
+       private Spinner wightSpiner;
+       private Spinner typeSpiner;
        private  TextView textView;
+       private  TextView locationTextView;
+       //endregion
     List<com.ddb.uberdelivery.Entities.Parcel> parcelList=new ArrayList<>();
     List<Member> members= new ArrayList<>();
     //region deleteAfter
@@ -39,7 +65,13 @@ public class MainActivity extends Activity {
         TextView tv = findViewById(R.id.phonePlainText);
         tv.setText("");
         fakeDetailes();
+        //region initialize Comments
+        typeSpiner=(Spinner)(findViewById(R.id.packageTypeSpinner2));
+        typeSpiner.setAdapter(new ArrayAdapter<Parcel.Type>(this,android.R.layout.simple_list_item_1,Parcel.Type.values()));
+        wightSpiner=(Spinner)(findViewById(R.id.packageWeightSpinner));
+        wightSpiner.setAdapter(new ArrayAdapter<parcelweight>(this,android.R.layout.simple_list_item_1,parcelweight.values()));
         button=(Button)(findViewById(R.id.addButton));
+        locationTextView=(TextView)(findViewById(R.id.packageLocationTextView));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +83,7 @@ public class MainActivity extends Activity {
                     }
                 });
 
-
+           //endregion
                 try
                 {
                     ///todo:  ADD  THE Logical PART (PARCEL VALIDATION)
@@ -72,10 +104,7 @@ public class MainActivity extends Activity {
 
             }
         });
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Hello, World!");
 
 
 
