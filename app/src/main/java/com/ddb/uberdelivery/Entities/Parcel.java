@@ -3,6 +3,8 @@ package com.ddb.uberdelivery.Entities;
 import android.location.Location;
 import android.provider.ContactsContract;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Date;
 
 public class Parcel {
@@ -24,15 +26,17 @@ public class Parcel {
     private String recipientName;
     private String recipientPhoneNumber;
     private String recipientEmailAddress;
-    private Date DeliverDate ;
+    private Date deliveryDate ;
     private Date ReceivedDate;
-    private String deliveryPersonName;
-
+    private String deliveryGuyName;
+    @Exclude
+     private String ID;
     //Constructors
     public Parcel(Status status, Type type, Boolean isFragile, double weight, Location distributionCenterAddress,
                   String recipientAddress, String recipientName, String recipientPhoneNumber,
                   String recipientEmailAddress,
-                  Date deliverDate, Date receivedDate, String deliveryPersonName) {
+                  Date deliverDate, Date receivedDate, String deliveryPersonName,String id) {
+
         this.status = status;
         this.type = type;
         this.isFragile = isFragile;
@@ -42,9 +46,17 @@ public class Parcel {
         this.recipientName = recipientName;
         this.recipientPhoneNumber = recipientPhoneNumber;
         this.recipientEmailAddress = recipientEmailAddress;
-        DeliverDate = deliverDate;
+        deliveryDate = deliverDate;
         ReceivedDate = receivedDate;
-        this.deliveryPersonName = deliveryPersonName;
+        this.deliveryGuyName = deliveryPersonName;
+        this.ID=id;
+
+    }
+
+    public Parcel() {
+        this(null,null,false,0,null,
+                "","","","",
+                null,null,"NO","");
     }
 
     //Getters & Setters
@@ -121,11 +133,11 @@ public class Parcel {
     }
 
     public Date getDeliverDate() {
-        return DeliverDate;
+        return deliveryDate;
     }
 
     public void setDeliverDate(Date deliverDate) {
-        DeliverDate = deliverDate;
+        deliverDate = deliverDate;
     }
 
     public Date getReceivedDate() {
@@ -137,10 +149,18 @@ public class Parcel {
     }
 
     public String getDeliveryPersonName() {
-        return deliveryPersonName;
+        return deliveryGuyName;
     }
 
     public void setDeliveryPersonName(String deliveryPersonName) {
-        this.deliveryPersonName = deliveryPersonName;
+        this.deliveryGuyName= deliveryPersonName;
+    }
+     @Exclude
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

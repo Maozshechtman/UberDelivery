@@ -7,9 +7,44 @@
     android:background="#ffffff"
     tools:context=".UI.MainActivity.MainActivity">
 
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Save"
+        android:typeface="sans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.244"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="8dp"
+        tools:textColor="?android:attr/navigationBarColor"
+        tools:textColorLink="@android:color/holo_blue_bright"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/historyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
+        android:text="parcels history"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:textColor="?android:attr/navigationBarColor"
+        tools:textColorLink="@android:color/holo_blue_bright" />
+
     <Spinner
         android:id="@+id/packageTypeSpinner2"
-        android:layout_width="283dp"
+        android:layout_width="match_parent"
         android:layout_height="22dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="50dp"
@@ -25,7 +60,7 @@
 
     <Spinner
         android:id="@+id/packageWeightSpinner"
-        android:layout_width="283dp"
+        android:layout_width="match_parent"
         android:layout_height="23dp"
         android:layout_marginBottom="42dp"
         android:layout_marginEnd="50dp"
@@ -38,46 +73,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/isFragileCheckBox" />
 
-    <CheckBox
-        android:id="@+id/isFragileCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
-        android:layout_marginEnd="157dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="157dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Fragile"
-        android:textColorLink="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/packageWeightSpinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/packageTypeSpinner2"
-        tools:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/packageLocationTextView"
-        android:layout_width="236dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="31dp"
-        android:text="Location"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/targetNameAddressSpinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.273"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/packageWeightSpinner" />
-
     <Spinner
         android:id="@+id/targetNameAddressSpinner"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:layout_marginEnd="52dp"
@@ -91,17 +89,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/packageLocationTextView" />
 
+    <TextView
+        android:id="@+id/packageLocationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="31dp"
+        android:text="Location"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/targetNameAddressSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/packageWeightSpinner" />
+
     <EditText
         android:id="@+id/phonePlainText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="164dp"
         android:layout_marginEnd="99dp"
         android:layout_marginLeft="72dp"
         android:layout_marginRight="99dp"
         android:layout_marginStart="72dp"
         android:editable="true"
         android:ems="10"
+        android:hint="Enter your phone number"
         android:inputType="phone"
         android:text="TargetPhoneNumber"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -109,107 +126,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/typeTextview"
-        android:layout_width="91dp"
+    <CheckBox
+        android:id="@+id/isFragileCheckBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Type"
-        android:textAllCaps="false"
-        android:textColorLink="@android:color/background_dark"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/packageTypeSpinner2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.155"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:shadowColor="@android:color/background_dark"
-        tools:shadowDy="@sample/tools:cities"
-        tools:textColor="@android:color/background_dark"
-        tools:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/addParcelTextview"
-        android:layout_width="91dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Add Parcel"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/packageTypeSpinner2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:shadowColor="@android:color/background_dark"
-        tools:shadowDy="@sample/tools:cities"
+        android:text="Fragile"
+        android:textColorLink="@android:color/black"
+        app:layout_constraintEnd_toStartOf="parent"
+        tools:layout_editor_absoluteY="74dp"
         tools:textColor="@android:color/black"
-        tools:textSize="18sp" />
-
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Save"
-        android:typeface="sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phonePlainText"
-        tools:textColor="?android:attr/navigationBarColor"
-        tools:textColorLink="@android:color/holo_blue_bright" />
-
-    <TextView
-        android:id="@+id/WherehouseLocationTextView"
-        android:layout_width="63dp"
-        android:layout_height="29dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Location"
-        app:layout_constraintBottom_toTopOf="@+id/packageLocationTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:text="Wight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/isFragileCheckBox"
-        tools:textColor="@android:color/black" />
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
