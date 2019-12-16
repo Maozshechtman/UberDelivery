@@ -44,24 +44,25 @@
 
     <Spinner
         android:id="@+id/packageTypeSpinner2"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/isFragileCheckBox"
+        android:layout_width="223dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/packageLocationTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@+id/packageWeightSpinner"
+        app:layout_constraintVertical_bias="0.571" />
 
     <Spinner
         android:id="@+id/packageWeightSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="23dp"
+        android:layout_width="214dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="42dp"
         android:layout_marginEnd="50dp"
         android:layout_marginLeft="51dp"
@@ -70,8 +71,10 @@
         android:layout_marginTop="13dp"
         app:layout_constraintBottom_toTopOf="@+id/packageLocationTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/isFragileCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/isFragileCheckBox"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <Spinner
         android:id="@+id/targetNameAddressSpinner"
@@ -91,8 +94,8 @@
 
     <TextView
         android:id="@+id/packageLocationTextView"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
+        android:layout_width="234dp"
+        android:layout_height="19dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -128,15 +131,54 @@
 
     <CheckBox
         android:id="@+id/isFragileCheckBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="207dp"
+        android:layout_height="25dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="Fragile"
         android:textColorLink="@android:color/black"
-        app:layout_constraintEnd_toStartOf="parent"
-        tools:layout_editor_absoluteY="74dp"
-        tools:textColor="@android:color/black"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addButton"
+        tools:ignore="MissingConstraints"
+        tools:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/datePickerbutton"
+        android:layout_width="81dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:text="choose \n date"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.788" />
+
+    <EditText
+        android:id="@+id/deliveryDateTextView"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerbutton"
+        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phonePlainText"
+        app:layout_constraintVertical_bias="0.089" />
 
 </android.support.constraint.ConstraintLayout>

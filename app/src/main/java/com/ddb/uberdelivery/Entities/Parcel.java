@@ -10,7 +10,10 @@ import java.util.Date;
 public class Parcel {
     //region Enums
     public enum Type{
-        Envelope, SmallPackage, LargePackage
+        
+        Envelope,
+        SmallPackage,
+        LargePackage
     }
     public enum Status{
         Registered, CollectionOffered, OnTheWay, Delivered

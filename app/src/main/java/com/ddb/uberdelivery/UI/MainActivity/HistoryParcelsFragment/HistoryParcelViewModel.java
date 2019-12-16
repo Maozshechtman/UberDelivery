@@ -19,6 +19,8 @@ public class HistoryParcelViewModel extends Activity {
         listView=findViewById(R.id.ParcelsListview);
         ArrayAdapter adapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,names);
         listView.setAdapter(adapter);
+
+
     }
 
 }
