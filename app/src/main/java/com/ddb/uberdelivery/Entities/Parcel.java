@@ -6,11 +6,13 @@ import android.provider.ContactsContract;
 import com.google.firebase.database.Exclude;
 
 import java.util.Date;
+import java.util.List;
 
 public class Parcel {
     //region Enums
     public enum Type{
-        
+
+        SelectValue,
         Envelope,
         SmallPackage,
         LargePackage
@@ -18,6 +20,9 @@ public class Parcel {
     public enum Status{
         Registered, CollectionOffered, OnTheWay, Delivered
     }
+
+    public static String[] Types = {"Select Value", "Envelope", "Small Package", "Large Package"};
+    public static String[] Weights = {"Select Value", "0.5 Kg", "1 Kg", "5 Kg", "20 Kg"};
 
    //Fields
     private Status status = Status.Registered;
