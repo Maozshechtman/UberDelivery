@@ -1,7 +1,6 @@
 package com.ddb.uberdelivery.UI.MainActivity.HistoryParcelsFragment;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
