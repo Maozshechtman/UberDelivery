@@ -36,6 +36,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
+        android:onClick="goToHistoryParcelsActivity"
         android:text="parcels history"
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"

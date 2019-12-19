@@ -87,4 +87,5 @@ public class Member {
 
         return member.getId() == this.getId();
     }
+
 }

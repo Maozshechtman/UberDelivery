@@ -13,7 +13,6 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,7 +29,6 @@ import androidx.core.content.ContextCompat;
 
 import com.ddb.uberdelivery.Entities.Member;
 import com.ddb.uberdelivery.Entities.Parcel;
-import com.ddb.uberdelivery.UI.MainActivity.HistoryParcelsFragment.HistoryParcelViewModel;
 import com.ddb.uberdelivery.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +37,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -349,6 +346,17 @@ public class MainActivity extends Activity {
     }
 
     //TODO:
+    public void goToHistoryParcelsActivity(View view)
+    {
+       try{
+           Intent intent= new Intent(MainActivity.this,HistoryParcels.class);
+            startActivity(intent);
+       }
+       catch (Exception ex){
+           for(int i=0;i<3;i++)
+           Toast.makeText(MainActivity.this,ex.getMessage(),Toast.LENGTH_LONG).show();
+       }
+    }
     public void addParcel(View view){
 
         if (checkFields() == false){

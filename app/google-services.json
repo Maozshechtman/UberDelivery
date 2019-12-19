@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "718516369072-p8t7nvgo71j9fjf8s18rvbvnl7kut0p9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ddb.uberdelivery",
+            "certificate_hash": "185714898dc6db858d63807d442c8053ee85faf8"
+          }
+        },
+        {
           "client_id": "718516369072-kh8idjkec6faec3eoj6sf6d4511i2gbi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
