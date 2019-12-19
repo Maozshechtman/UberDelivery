@@ -12,6 +12,7 @@ public class Member {
     private String address;
     private String emailAddress;
 
+
     //Constructors
     public Member(String id, String firstName, String lastName, String phoneNumber, String address, String emailAdress) {
         this.id = id;
@@ -22,11 +23,13 @@ public class Member {
         this.emailAddress = emailAdress;
     }
 
+
     //Getters and Setters
 
     public String getId(){ return id; }
 
     public void setId(String id){ this.id = id; }
+
 
     public String getFirstName() {
         return firstName;
@@ -36,6 +39,7 @@ public class Member {
         this.firstName = firstName;
     }
 
+
     public String getLastName() {
         return lastName;
     }
@@ -43,6 +47,7 @@ public class Member {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -52,6 +57,7 @@ public class Member {
         this.phoneNumber = phoneNumber;
     }
 
+
     public String getAddress() {
         return address;
     }
@@ -59,6 +65,7 @@ public class Member {
     public void setAddress(String address) {
         this.address = address;
     }
+
 
     public String getEmailAddress() {
         return emailAddress;
@@ -70,7 +77,6 @@ public class Member {
 
 
     //Overrides
-
 
     @Override
     public boolean equals(@Nullable Object obj) {

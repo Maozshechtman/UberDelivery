@@ -35,6 +35,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -60,8 +61,6 @@ public class MainActivity extends Activity {
     private TextView deliveryDateTextView;
     private int mYear, mMonth, mDay;
 
-    private int parcelsCount;
-
     //GPS
     LocationManager locationManager;
     LocationListener locationListener;
@@ -69,6 +68,9 @@ public class MainActivity extends Activity {
     //FireBase
     FirebaseDatabase database;
     DatabaseReference myRef;
+
+    //Data
+    private int parcelsCount;
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Parcel> parcels = new ArrayList<>();
 
@@ -154,6 +156,7 @@ public class MainActivity extends Activity {
         }
         //endregion
 
+        //region Firebase Setup
         database = FirebaseDatabase.getInstance();
 
         //Get Members
@@ -185,8 +188,23 @@ public class MainActivity extends Activity {
             }
         });
 
-        addMember("308478098", "elyasaf", "elbaz", "0546401267", "beit el, sufa 4","elyasaf755@gmail.com");
-        addMember("312589963", "Maoz", "Shachtman", "0525525223", "habrecha 3, haifa", "maozShechtman@gmail.com");
+        //Get Parcels Count
+        DatabaseReference dbRef = database.getReference("Config");
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                parcelsCount = dataSnapshot.child("ParcelsCount").getValue(int.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //endregion
+
+        //addMember("308478098", "elyasaf", "elbaz", "0546401267", "beit el, sufa 4","elyasaf755@gmail.com");
+        //addMember("312589963", "Maoz", "Shachtman", "0525525223", "habrecha 3, haifa", "maozShechtman@gmail.com");
     }
 
     @Override
@@ -242,10 +260,9 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void addMember(String id, String firstName, String lastName, String phoneNumber, String address, String emailAdress){
-        Member member = new Member(id, firstName, lastName, phoneNumber, address, emailAdress);
+    private String getParcelId(){
 
-        myRef.child(id).setValue(member);
+        return String.valueOf(parcelsCount);
     }
 
     private Member getMemberByPhoneNumber(String phoneNumber){
@@ -257,6 +274,21 @@ public class MainActivity extends Activity {
 
         return null;
     }
+
+    //TODO:
+    public void goToHistoryParcelsActivity(View view){
+        try{
+            Intent intent= new Intent(MainActivity.this,HistoryParcels.class);
+            startActivity(intent);
+        }
+        catch (Exception ex){
+            for(int i=0;i<3;i++)
+                Toast.makeText(MainActivity.this,ex.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    //Converters
 
     private Member dataSnapShotToMember(DataSnapshot dataSnapshot){
         if (dataSnapshot.child("firstName").getValue(String.class) == null){
@@ -278,84 +310,27 @@ public class MainActivity extends Activity {
             throw new IllegalArgumentException();
         }
 
-        Member member = getMemberByPhoneNumber(phoneNumberTextView.getText().toString());
-
         return new Parcel(
-        Parcel.Status.Registered,
-        typeSpiner.getSelectedItem().toString(),
-        isFragileCheckBox.isChecked(),
-        weightSpinner.getSelectedItem().toString(),
-        locationTextView.getText().toString(),
-        member.getAddress(),
-        member.getFirstName(),
-        member.getLastName(),
-        member.getPhoneNumber(),
-        member.getEmailAddress(),
-        deliveryDateTextView.getText().toString(),//received in shipment center
-        "NOT YET SHIPPED",//delivery guy took the parcel
-        "NOT YET DELIVERED",//delivered to customer
-        "NOT YET TAKEN BY DELIVERY GUY",
-        calcNextParcelId()
+                Parcel.Status.valueOf(dataSnapshot.child("status").getValue(String.class)),
+                dataSnapshot.child("type").getValue(String.class),
+                dataSnapshot.child("fragile").getValue(Boolean.class),
+                dataSnapshot.child("weight").getValue(String.class),
+                dataSnapshot.child("distributionCenterAddress").getValue(String.class),
+                dataSnapshot.child("recipientAddress").getValue(String.class),
+                dataSnapshot.child("recipientFirstName").getValue(String.class),
+                dataSnapshot.child("recipientLastName").getValue(String.class),
+                dataSnapshot.child("recipientPhoneNumber").getValue(String.class),
+                dataSnapshot.child("recipientEmailAddress").getValue(String.class),
+                dataSnapshot.child("receivedDate").getValue(String.class),
+                dataSnapshot.child("deliveryDate").getValue(String.class),
+                dataSnapshot.child("shippedDate").getValue(String.class),
+                dataSnapshot.child("deliveryGuyName").getValue(String.class),
+                dataSnapshot.child("id").getValue(String.class)
         );
     }
 
-    public void findMember(View view){
 
-        Member member = getMemberByPhoneNumber(phoneNumberTextView.getText().toString());
-
-        if (member != null){
-            targetNameTextView.setText(member.getFirstName() + " " + member.getLastName());
-        }
-        else{
-            targetNameTextView.setText("");
-            Toast.makeText(MainActivity.this, "Member not found!!!", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private String calcNextParcelId(){
-        //Get Parcels Count
-        DatabaseReference dbRef = database.getReference("Config");
-        dbRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                parcelsCount = dataSnapshot.getValue(int.class);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        return String.valueOf(parcelsCount);
-    }
-
-    //TODO:
-    public void goToHistoryParcelsActivity(View view){
-       try{
-           Intent intent= new Intent(MainActivity.this,HistoryParcels.class);
-            startActivity(intent);
-       }
-       catch (Exception ex){
-           for(int i=0;i<3;i++)
-           Toast.makeText(MainActivity.this,ex.getMessage(),Toast.LENGTH_LONG).show();
-       }
-    }
+    //Actions
 
     public void addParcel(View view){
 
@@ -375,16 +350,17 @@ public class MainActivity extends Activity {
                 locationTextView.getText().toString(),
                 member.getAddress(),
                 member.getFirstName(),
+                member.getLastName(),
                 member.getPhoneNumber(),
                 member.getEmailAddress(),
                 deliveryDateTextView.getText().toString(),
-                null,
-                null,
-                null,
-                null,
-                calcNextParcelId()
+                "NOT YET DELIVERED",
+                "NOT YET SHIPPED",
+                "NOT YET TAKEN BY DELIVERY GUY",
+                getParcelId()
                 );
 
+        //Get Parcels
         myRef = database.getReference("Parcel");
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -417,10 +393,32 @@ public class MainActivity extends Activity {
 
         //Increase parcel counter
         DatabaseReference dbref = database.getReference("Config").child("ParcelsCount");
-        int count = (int) parcelsCount + 1;
+        parcelsCount += 1;
 
-        dbref.setValue(count);
+        dbref.setValue(parcelsCount);
     }
+
+    private void addMember(String id, String firstName, String lastName, String phoneNumber, String address, String emailAdress){
+        Member member = new Member(id, firstName, lastName, phoneNumber, address, emailAdress);
+
+        myRef.child(id).setValue(member);
+    }
+
+    public void findMember(View view){
+
+        Member member = getMemberByPhoneNumber(phoneNumberTextView.getText().toString());
+
+        if (member != null){
+            targetNameTextView.setText(member.getFirstName() + " " + member.getLastName());
+        }
+        else{
+            targetNameTextView.setText("");
+            Toast.makeText(MainActivity.this, "Member not found!!!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    //Validations
 
     public boolean checkFields(){
             if (checkLocation() && checkWeight() && checkPersonalInfo() && checkType()){
@@ -444,7 +442,6 @@ public class MainActivity extends Activity {
     public boolean checkType(){
             return typeSpiner.getSelectedItem().toString() != "Select Type";
             }
-
     //phone + name
     public boolean checkPersonalInfo(){
             Member member = getMemberByPhoneNumber(phoneNumberTextView.getText().toString());
@@ -470,6 +467,7 @@ public class MainActivity extends Activity {
             return false;
             }
             }
+
 }
 
 

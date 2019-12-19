@@ -1,5 +1,7 @@
 package com.ddb.uberdelivery.Entities;
 
+import androidx.annotation.NonNull;
+
 public class Parcel {
     //region Enums
     public enum Type{
@@ -19,7 +21,7 @@ public class Parcel {
    //Fields
     private Status status = Status.Registered;
     private String type;
-    private Boolean isFragile;
+    private boolean isFragile;
     private String weight;
     private String distributionCenterAddress;
     private String recipientAddress;
@@ -73,6 +75,7 @@ public class Parcel {
         this.status = status;
     }
 
+
     public String getType() {
         return type;
     }
@@ -80,6 +83,7 @@ public class Parcel {
     public void setType(String type) {
         this.type = type;
     }
+
 
     public Boolean getFragile() {
         return isFragile;
@@ -89,6 +93,7 @@ public class Parcel {
         isFragile = fragile;
     }
 
+
     public String getWeight() {
         return weight;
     }
@@ -96,6 +101,7 @@ public class Parcel {
     public void setWeight(String weight) {
         this.weight = weight;
     }
+
 
     public String getDistributionCenterAddress() {
         return distributionCenterAddress;
@@ -105,6 +111,7 @@ public class Parcel {
         this.distributionCenterAddress = distributionCenterAddress;
     }
 
+
     public String getRecipientAddress() {
         return recipientAddress;
     }
@@ -112,6 +119,7 @@ public class Parcel {
     public void setRecipientAddress(String recipientAddress) {
         this.recipientAddress = recipientAddress;
     }
+
 
     public String getRecipientFirstName() {
         return recipientFirstName;
@@ -121,6 +129,7 @@ public class Parcel {
         this.recipientFirstName = recipientFirstName;
     }
 
+
     public String getRecipientLastName() {
         return recipientLastName;
     }
@@ -128,6 +137,7 @@ public class Parcel {
     public void setRecipientLastName(String recipientLastName) {
         this.recipientLastName = recipientLastName;
     }
+
 
     public String getRecipientPhoneNumber() {
         return recipientPhoneNumber;
@@ -137,6 +147,7 @@ public class Parcel {
         this.recipientPhoneNumber = recipientPhoneNumber;
     }
 
+
     public String getRecipientEmailAddress() {
         return recipientEmailAddress;
     }
@@ -144,6 +155,7 @@ public class Parcel {
     public void setRecipientEmailAddress(String recipientEmailAddress) {
         this.recipientEmailAddress = recipientEmailAddress;
     }
+
 
     public String getReceivedDate() {
         return receivedDate;
@@ -153,6 +165,7 @@ public class Parcel {
         this.receivedDate = receivedDate;
     }
 
+
     public String getShippedDate() {
         return shippedDate;
     }
@@ -160,6 +173,7 @@ public class Parcel {
     public void setShippedDate(String receivedDate) {
         this.shippedDate = shippedDate;
     }
+
 
     public String getDeliveryDate() {
         return deliveryDate;
@@ -169,6 +183,7 @@ public class Parcel {
         deliverDate = deliverDate;
     }
 
+
     public String getDeliveryPersonName() {
         return deliveryGuyName;
     }
@@ -177,11 +192,21 @@ public class Parcel {
         this.deliveryGuyName= deliveryPersonName;
     }
 
+
     public String getID() {
         return id;
     }
 
     public void setID(String id) {
         this.id = id;
+    }
+
+
+    //Overrides
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Status: " + getStatus() + ".\nParcelID:" + getID() + ".\n" + "Address: " + recipientAddress;
     }
 }
