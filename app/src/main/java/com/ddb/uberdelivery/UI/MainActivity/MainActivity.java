@@ -274,7 +274,7 @@ public class MainActivity extends Activity {
     }
 
     private Parcel dataSnapShotToParcel(DataSnapshot dataSnapshot){
-        if (dataSnapshot.child("isFragile").getValue(String.class) == null){
+        if (dataSnapshot.child("isFragile").getChildrenCount() > 0 && dataSnapshot.child("isFragile").getValue(String.class) == null){
             throw new IllegalArgumentException();
         }
 
@@ -346,8 +346,7 @@ public class MainActivity extends Activity {
     }
 
     //TODO:
-    public void goToHistoryParcelsActivity(View view)
-    {
+    public void goToHistoryParcelsActivity(View view){
        try{
            Intent intent= new Intent(MainActivity.this,HistoryParcels.class);
             startActivity(intent);
@@ -357,6 +356,7 @@ public class MainActivity extends Activity {
            Toast.makeText(MainActivity.this,ex.getMessage(),Toast.LENGTH_LONG).show();
        }
     }
+
     public void addParcel(View view){
 
         if (checkFields() == false){
@@ -420,56 +420,56 @@ public class MainActivity extends Activity {
         int count = (int) parcelsCount + 1;
 
         dbref.setValue(String.valueOf(count));
-        }
+    }
 
-public boolean checkFields(){
-        if (checkLocation() && checkWeight() && checkPersonalInfo() && checkType()){
-        addButton.setEnabled(true);
-        return true;
-        }
-        else{
-        addButton.setEnabled(false);
-        return false;
-        }
-        }
+    public boolean checkFields(){
+            if (checkLocation() && checkWeight() && checkPersonalInfo() && checkType()){
+            addButton.setEnabled(true);
+            return true;
+            }
+            else{
+            addButton.setEnabled(false);
+            return false;
+            }
+            }
 
-public void checkInfo(View view){
-        checkFields();
-        }
+    public void checkInfo(View view){
+            checkFields();
+            }
 
-public boolean checkWeight(){
-        return weightSpinner.getSelectedItem().toString() != "Select Weight";
-        }
+    public boolean checkWeight(){
+            return weightSpinner.getSelectedItem().toString() != "Select Weight";
+            }
 
-public boolean checkType(){
-        return typeSpiner.getSelectedItem().toString() != "Select Type";
-        }
+    public boolean checkType(){
+            return typeSpiner.getSelectedItem().toString() != "Select Type";
+            }
 
-//phone + name
-public boolean checkPersonalInfo(){
-        Member member = getMemberByPhoneNumber(phoneNumberTextView.getText().toString());
-        if (member == null){
-        return false;
-        }
+    //phone + name
+    public boolean checkPersonalInfo(){
+            Member member = getMemberByPhoneNumber(phoneNumberTextView.getText().toString());
+            if (member == null){
+            return false;
+            }
 
-        return (member.getFirstName() + " " + member.getLastName()).equals(targetNameTextView.getText().toString());
-        }
+            return (member.getFirstName() + " " + member.getLastName()).equals(targetNameTextView.getText().toString());
+            }
 
-public boolean checkLocation(){
-        return locationTextView.getText().toString() != "" && checkInternetConnection();
-        }
+    public boolean checkLocation(){
+            return locationTextView.getText().toString() != "" && checkInternetConnection();
+            }
 
-public boolean checkInternetConnection(){
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+    public boolean checkInternetConnection(){
+            ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-        connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-        return true;
-        }
-        else{
-        return false;
-        }
-        }
+            if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            return true;
+            }
+            else{
+            return false;
+            }
+            }
 }
 
 
