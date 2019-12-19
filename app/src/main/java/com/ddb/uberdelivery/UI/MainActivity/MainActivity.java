@@ -419,7 +419,7 @@ public class MainActivity extends Activity {
         DatabaseReference dbref = database.getReference("Config").child("ParcelsCount");
         int count = (int) parcelsCount + 1;
 
-        dbref.setValue(String.valueOf(count));
+        dbref.setValue(count);
     }
 
     public boolean checkFields(){
