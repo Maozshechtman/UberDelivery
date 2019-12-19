@@ -416,7 +416,7 @@ public class MainActivity extends Activity {
         myRef.child(String.valueOf(parcelsCount)).setValue(parcel);
 
         //Increase parcel counter
-        DatabaseReference dbref = database.getReference("ParcelsCount");
+        DatabaseReference dbref = database.getReference("Config").child("ParcelsCount");
         int count = (int) parcelsCount + 1;
 
         dbref.setValue(String.valueOf(count));
